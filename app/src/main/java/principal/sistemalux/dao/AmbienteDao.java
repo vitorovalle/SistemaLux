@@ -2,8 +2,11 @@ package principal.sistemalux.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
 
 import principal.sistemalux.modelo.Ambiente;
 
@@ -51,4 +54,24 @@ public class AmbienteDao extends SQLiteOpenHelper {
         return retorno_ambienteDB;
 
     }
+
+    /**public ArrayList<Ambiente> selectAllAmbiente() {
+        String[] coluna = (ID_AMBIENTE, NOME_AMBIENTE);
+
+        Cursor cursor = getWritableDatabase().query(TABELA, coluna, null, null, null, null, "nomeAmbiente", null);
+
+        ArrayList<Ambiente> listAmbiente = new ArrayList<Ambiente>();
+
+        while (cursor.moveToNext()){
+
+            Ambiente a = new Ambiente();
+
+            a.setIdAmbiente(cursor.getInt(0));
+            a.setNomeAmbiente(cursor.getString(1));
+
+            listAmbiente.add(a);
+        }
+
+        return listAmbiente;
+    }*/
 }

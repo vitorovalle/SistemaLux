@@ -28,5 +28,8 @@ public class Ambiente {
         this.nomeAmbiente = nomeAmbiente;
     }
 
-
+    @Override
+    public String toString() {
+        return nomeAmbiente.toString();
+    }
 }
