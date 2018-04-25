@@ -1,10 +1,12 @@
 package principal.sistemalux.modelo;
 
+import java.io.Serializable;
+
 /**
  * Created by Alfa on 18/11/2017.
  */
 
-public class Ambiente {
+public class Ambiente implements Serializable {
 
     private int idAmbiente;
     private String nomeAmbiente;

@@ -34,7 +34,10 @@ public class FormAmbiente extends AppCompatActivity {
         btnAmbiente = (Button) findViewById(R.id.btnAmbiente);
 
         if(altambiente != null){
-            btnAmbiente.setText("Alterar");}
+            btnAmbiente.setText("Alterar");
+            editAmbiente.setText(altambiente.getNomeAmbiente());
+            ambiente.setIdAmbiente(altambiente.getIdAmbiente());
+        }
         else{
             btnAmbiente.setText("Salvar");
         }
@@ -42,18 +45,30 @@ public class FormAmbiente extends AppCompatActivity {
         btnAmbiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ambiente.setIdAmbiente(altambiente.getIdAmbiente());
                 ambiente.setNomeAmbiente(editAmbiente.getText().toString());
-                ambiente.setIdAmbiente(Integer.parseInt(editAmbiente.getText().toString()));
 
                 if (btnAmbiente.getText().toString().equals("Salvar")) {
                     retorno_ambiente = ambienteDao.criarAmbiente(ambiente);
+                    ambienteDao.close();
                     if (retorno_ambiente == -1) {
                         aviso("Erro ao cadastrar ambiente");
                     } else {
                         aviso("Ambiente cadastrado com sucesso");
                     }
 
+                 }
 
+                 else {
+                    retorno_ambiente = ambienteDao.alterarAmbiente(ambiente);
+                    ambienteDao.close();
+
+                    if (retorno_ambiente == -1){
+                        aviso("Erro ao alterar");
+                    }
+                    else{
+                        aviso("Atualização realizada com sucesso");
+                    }
                 }
 
                 finish();
