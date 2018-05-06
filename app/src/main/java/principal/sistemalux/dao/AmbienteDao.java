@@ -61,24 +61,25 @@ public class AmbienteDao extends SQLiteOpenHelper {
 
         valuesAmbiente.put(NOME_AMBIENTE, a.getNomeAmbiente());
 
-        String[] args = (String.valueOf(a.getIdAmbiente()));
+        String[] args = {(String.valueOf(a.getIdAmbiente()))};
         retorno_ambienteDB = getWritableDatabase().update(TABELA, valuesAmbiente, ID_AMBIENTE+"=?", args);
 
         return retorno_ambienteDB;
 
     }
 
-    public long excluirAmbiente(Ambiente a){
+    public long excluirAmbiente(Ambiente a) {
         long retorno_ambienteDB;
 
-        String[] args = (String.valueOf(a.getIdAmbiente()));
-        retorno_ambienteDB = getWritableDatabase().delete(TABELA, ID_AMBIENTE+"=?", args);
+        String[] args = {(String.valueOf(a.getIdAmbiente()))};
+        retorno_ambienteDB = getWritableDatabase().delete(TABELA, ID_AMBIENTE + "=?", args);
 
         return retorno_ambienteDB;
+    }
 
 
     public ArrayList<Ambiente> selectAllAmbiente() {
-        String[] coluna = (ID_AMBIENTE, NOME_AMBIENTE);
+        String[] coluna = {ID_AMBIENTE, NOME_AMBIENTE};
 
         Cursor cursor = getWritableDatabase().query(TABELA, coluna, null, null, null, null, "nomeAmbiente", null);
 
@@ -92,7 +93,8 @@ public class AmbienteDao extends SQLiteOpenHelper {
             a.setNomeAmbiente(cursor.getString(1));
 
             listAmbiente.add(a);
-        }
+
+          }
 
         return listAmbiente;
     }

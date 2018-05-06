@@ -61,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
                 ambiente = arrayAdapterAmbiente.getItem(position);
                 return false;
             }
-        }
-    }
+        })
+    ;}
 
     public void populaLista(){
 
@@ -105,12 +105,10 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-        super.OnCreateContextMenu(menu, v, menuInfo);
+        super.onCreateContextMenu(menu, v, menuInfo);
         }
-    }
 
     private void aviso(String s) {
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
     }
-
 }
