@@ -81,7 +81,7 @@ public class AmbienteDao extends SQLiteOpenHelper {
     public ArrayList<Ambiente> selectAllAmbiente() {
         String[] coluna = {ID_AMBIENTE, NOME_AMBIENTE};
 
-        Cursor cursor = getWritableDatabase().query(TABELA, coluna, null, null, null, null, "nomeAmbiente", null);
+        Cursor cursor = getWritableDatabase().query(TABELA, coluna, null, null, null, null, "ambiente", null);
 
         ArrayList<Ambiente> listAmbiente = new ArrayList<Ambiente>();
 

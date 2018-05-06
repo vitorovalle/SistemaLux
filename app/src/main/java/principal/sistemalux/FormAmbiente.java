@@ -45,7 +45,6 @@ public class FormAmbiente extends AppCompatActivity {
         btnAmbiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ambiente.setIdAmbiente(altambiente.getIdAmbiente());
                 ambiente.setNomeAmbiente(editAmbiente.getText().toString());
 
                 if (btnAmbiente.getText().toString().equals("Salvar")) {
