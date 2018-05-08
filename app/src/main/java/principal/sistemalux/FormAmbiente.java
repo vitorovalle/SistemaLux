@@ -9,16 +9,22 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import principal.sistemalux.dao.AmbienteDao;
+import principal.sistemalux.dao.DispositivoDao;
 import principal.sistemalux.modelo.Ambiente;
+import principal.sistemalux.modelo.Dispositivo;
 
 public class FormAmbiente extends AppCompatActivity {
 
     EditText editAmbiente;
-    Button btnAmbiente;
+    Button btnAmbiente, btnDispositivo;
+
+    long retorno_ambiente, retorno_dispositivo;
 
     Ambiente ambiente, altambiente;
     AmbienteDao ambienteDao;
-    long retorno_ambiente;
+
+    Dispositivo dispositivo, altdispositivo;
+    DispositivoDao dispositivoDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +38,13 @@ public class FormAmbiente extends AppCompatActivity {
 
         editAmbiente = (EditText) findViewById(R.id.editAmbiente);
         btnAmbiente = (Button) findViewById(R.id.btnAmbiente);
+        btnDispositivo = (Button) findViewById(R.id.btnDispositivo);
 
-        if(altambiente != null){
+        if (altambiente != null) {
             btnAmbiente.setText("Alterar");
             editAmbiente.setText(altambiente.getNomeAmbiente());
             ambiente.setIdAmbiente(altambiente.getIdAmbiente());
-        }
-        else{
+        } else {
             btnAmbiente.setText("Salvar");
         }
 
@@ -56,16 +62,13 @@ public class FormAmbiente extends AppCompatActivity {
                         aviso("Ambiente cadastrado com sucesso");
                     }
 
-                 }
-
-                 else {
+                } else {
                     retorno_ambiente = ambienteDao.alterarAmbiente(ambiente);
                     ambienteDao.close();
 
-                    if (retorno_ambiente == -1){
+                    if (retorno_ambiente == -1) {
                         aviso("Erro ao alterar");
-                    }
-                    else{
+                    } else {
                         aviso("Atualização realizada com sucesso");
                     }
                 }
@@ -74,8 +77,16 @@ public class FormAmbiente extends AppCompatActivity {
 
             }
         });
-    }
 
+        if (altdispositivo != null) {
+            btnDispositivo.setVisibility(View.VISIBLE);
+        } else {
+            btnDispositivo.setVisibility(View.INVISIBLE);
+        }
+
+        /**btnDispositivo.setOnClickListener(new View.OnClickListener() {
+         }*/
+    }
 
     private void aviso(String s){
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
