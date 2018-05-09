@@ -1,8 +1,12 @@
 package principal.sistemalux.dao;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
 
 import principal.sistemalux.modelo.Dispositivo;
 
@@ -42,5 +46,67 @@ public class DispositivoDao extends SQLiteOpenHelper {
         db.execSQL(sql);
         onCreate(db);
 
+    }
+
+    public long criarDispositivo(Dispositivo d){
+        ContentValues valuesDispositivo = new ContentValues();
+        long retorno_dispositivoDB;
+
+        valuesDispositivo.put(NOME_DISPOSITIVO, d.getNomeDispositivo());
+        valuesDispositivo.put(CONSUMO_DISPOSITIVO, d.getConsumoDispositivo());
+        valuesDispositivo.put(TEMPO_DE_USO_DIARIO, d.getTempoDeUsoDiario());
+
+        retorno_dispositivoDB = getWritableDatabase().insert(TABELA, null, valuesDispositivo);
+
+        return retorno_dispositivoDB;
+
+    }
+
+    public long alterarDispositivo(Dispositivo d){
+        ContentValues valuesDispositivo = new ContentValues();
+        long retorno_dispositivoDB;
+
+        valuesDispositivo.put(NOME_DISPOSITIVO, d.getNomeDispositivo());
+        valuesDispositivo.put(CONSUMO_DISPOSITIVO, d.getNomeDispositivo());
+        valuesDispositivo.put(TEMPO_DE_USO_DIARIO, d.getTempoDeUsoDiario());
+
+        String[] args = {(String.valueOf(d.getIdDispositivo()))};
+        retorno_dispositivoDB = getWritableDatabase().update(TABELA, valuesDispositivo, ID_DISPOSITIVO+"=?", args);
+
+        return retorno_dispositivoDB;
+
+    }
+
+    public long excluirDispositivo(Dispositivo d) {
+        long retorno_dispositivoDB;
+
+        String[] args = {(String.valueOf(d.getIdDispositivo()))};
+        retorno_dispositivoDB = getWritableDatabase().delete(TABELA, ID_DISPOSITIVO + "=?", args);
+
+        return retorno_dispositivoDB;
+    }
+
+
+    public ArrayList<Dispositivo> selectAllDispositivo() {
+        String[] coluna = {ID_DISPOSITIVO, NOME_DISPOSITIVO, CONSUMO_DISPOSITIVO, TEMPO_DE_USO_DIARIO};
+
+        Cursor cursor = getWritableDatabase().query(TABELA, coluna, null, null, null, null, "dispositivo", null);
+
+        ArrayList<Dispositivo> listDispositivo = new ArrayList<Dispositivo>();
+
+        while (cursor.moveToNext()){
+
+            Dispositivo d = new Dispositivo();
+
+            d.setIdDispositivo(cursor.getInt(0));
+            d.setNomeDispositivo(cursor.getString(1));
+            d.setConsumoDispositivo(cursor.getInt(2));
+            d.setTempoDeUsoDiario(cursor.getInt(3));
+
+            listDispositivo.add(d);
+
+        }
+
+        return listDispositivo;
     }
 }
