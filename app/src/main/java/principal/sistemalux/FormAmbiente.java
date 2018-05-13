@@ -44,8 +44,10 @@ public class FormAmbiente extends AppCompatActivity {
             btnAmbiente.setText("Alterar");
             editAmbiente.setText(altambiente.getNomeAmbiente());
             ambiente.setIdAmbiente(altambiente.getIdAmbiente());
+            btnDispositivo.setVisibility(View.VISIBLE);
         } else {
             btnAmbiente.setText("Salvar");
+            btnDispositivo.setVisibility(View.INVISIBLE);
         }
 
         btnAmbiente.setOnClickListener(new View.OnClickListener() {
@@ -76,19 +78,18 @@ public class FormAmbiente extends AppCompatActivity {
                 finish();
 
             }
+
         });
 
-        if (altdispositivo != null) {
-            btnDispositivo.setVisibility(View.VISIBLE);
-        } else {
-            btnDispositivo.setVisibility(View.INVISIBLE);
+        btnDispositivo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent k = new Intent(FormAmbiente.this, FormDispositivo.class);
+                startActivity(k);
+            }
+            });
         }
 
-        /**btnDispositivo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-         }*/
-    }
 
     private void aviso(String s){
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
