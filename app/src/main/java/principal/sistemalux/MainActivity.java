@@ -1,6 +1,7 @@
 package principal.sistemalux;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -10,6 +11,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -52,6 +55,13 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(MainActivity.this, FormAmbiente.class);
                 i.putExtra ("ambiente-enviado", ambienteEnviado);
                 startActivity(i);
+
+                /*Intent j = new Intent(MainActivity.this, FormAmbiente.class);
+                int adapterPosition = position - listAmbientes.getHeaderViewsCount();
+                Cursor cursor = (Cursor) arrayAdapterAmbiente.getItem(position);
+                int idamb = cursor.getInt(cursor.getColumnIndex("idAmbiente"));
+                j.putExtra("idAmbiente", idamb);
+                startActivity(j);*/
             }
         });
 

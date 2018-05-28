@@ -5,9 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import principal.sistemalux.R;
 import principal.sistemalux.modelo.Ambiente;
 
 /**
@@ -22,6 +24,7 @@ public class AmbienteDao extends SQLiteOpenHelper {
 
     private static final String ID_AMBIENTE = "idAmbiente";
     private static final String NOME_AMBIENTE = "ambiente";
+    private static final String ID_DISPOSITIVO = "idDispositivo";
 
     public AmbienteDao(Context context) {
         super(context, NOME_BANCO, null, VERSAO);
@@ -31,7 +34,8 @@ public class AmbienteDao extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE "+TABELA+" ( " +
                 " "+ID_AMBIENTE+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
-                " "+NOME_AMBIENTE+" TEXT );";
+                " "+NOME_AMBIENTE+" TEXT, "+
+                " "+ID_DISPOSITIVO+" TEXT );";
         db.execSQL(sql);
 
     }
@@ -98,4 +102,5 @@ public class AmbienteDao extends SQLiteOpenHelper {
 
         return listAmbiente;
     }
+
 }

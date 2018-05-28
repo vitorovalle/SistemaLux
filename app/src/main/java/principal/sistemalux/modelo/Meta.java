@@ -1,12 +1,13 @@
 package principal.sistemalux.modelo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Alfa on 09/05/2018.
  */
 
-public class Meta {
+public class Meta implements Serializable {
 
     private int idMeta, pontosMeta, despesaMeta;
     private Date dataMeta;

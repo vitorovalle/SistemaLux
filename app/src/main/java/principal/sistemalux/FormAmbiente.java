@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import principal.sistemalux.dao.AmbienteDao;
@@ -16,15 +18,12 @@ import principal.sistemalux.modelo.Dispositivo;
 public class FormAmbiente extends AppCompatActivity {
 
     EditText editAmbiente;
-    Button btnAmbiente, btnDispositivo;
+    Button btnAmbiente;
 
-    long retorno_ambiente, retorno_dispositivo;
+    long retorno_ambiente;
 
     Ambiente ambiente, altambiente;
     AmbienteDao ambienteDao;
-
-    Dispositivo dispositivo, altdispositivo;
-    DispositivoDao dispositivoDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,16 +37,15 @@ public class FormAmbiente extends AppCompatActivity {
 
         editAmbiente = (EditText) findViewById(R.id.editAmbiente);
         btnAmbiente = (Button) findViewById(R.id.btnAmbiente);
-        btnDispositivo = (Button) findViewById(R.id.btnDispositivo);
 
         if (altambiente != null) {
             btnAmbiente.setText("Alterar");
             editAmbiente.setText(altambiente.getNomeAmbiente());
             ambiente.setIdAmbiente(altambiente.getIdAmbiente());
-            btnDispositivo.setVisibility(View.VISIBLE);
+            //listDispositivo.setVisibility(View.VISIBLE);
         } else {
             btnAmbiente.setText("Salvar");
-            btnDispositivo.setVisibility(View.INVISIBLE);
+            //listDispositivo.setVisibility(View.INVISIBLE);
         }
 
         btnAmbiente.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +66,7 @@ public class FormAmbiente extends AppCompatActivity {
                     retorno_ambiente = ambienteDao.alterarAmbiente(ambiente);
                     ambienteDao.close();
 
+
                     if (retorno_ambiente == -1) {
                         aviso("Erro ao alterar");
                     } else {
@@ -81,13 +80,6 @@ public class FormAmbiente extends AppCompatActivity {
 
         });
 
-        btnDispositivo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent k = new Intent(FormAmbiente.this, FormDispositivo.class);
-                startActivity(k);
-            }
-            });
         }
 
 

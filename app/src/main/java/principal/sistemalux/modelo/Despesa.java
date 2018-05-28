@@ -1,12 +1,13 @@
 package principal.sistemalux.modelo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Alfa on 09/05/2018.
  */
 
-public class Despesa {
+public class Despesa implements Serializable {
 
     private int idDespesa, despesaDiaria, despesaTotal;
     private Date dataDespesa;

@@ -24,6 +24,8 @@ public class DespesaDao extends SQLiteOpenHelper {
     private static final String DESPESA_DIARIA = "despesaDiaria";
     private static final String DESPESA_TOTAL = "despesaTotal";
     private static final String DATA_DESPESA = "dataDespesa";
+    private static final String ID_AMBIENTE = "idAmbiente";
+    private static final String ID_TARIFA = "idTarifa";
 
     public DespesaDao(Context context) {
         super(context, NOME_BANCO, null, VERSAO);
@@ -35,7 +37,9 @@ public class DespesaDao extends SQLiteOpenHelper {
                 " "+ID_DESPESA+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
                 " "+DESPESA_DIARIA+" INTEGER "+
                 " "+DESPESA_TOTAL+" INTEGER "+
-                " "+DATA_DESPESA+" DATETIME );";
+                " "+DATA_DESPESA+" DATETIME "+
+                " "+ID_TARIFA+" TEXT "+
+                " "+ID_AMBIENTE+" TEXT);";
         db.execSQL(sql);
 
     }

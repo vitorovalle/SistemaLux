@@ -25,6 +25,7 @@ public class MetaDao extends SQLiteOpenHelper {
     private static final String DESPESA_META = "despesaMeta";
     private static final String PONTOS_META = "pontosMeta";
     private static final String DATA_META= "dataMeta";
+    private static final String ID_DESPESA= "idDespesa";
 
     public MetaDao(Context context) {
         super(context, NOME_BANCO, null, VERSAO);
@@ -36,7 +37,8 @@ public class MetaDao extends SQLiteOpenHelper {
                 " "+ID_META+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
                 " "+DESPESA_META+" INTEGER "+
                 " "+PONTOS_META+" INTEGER "+
-                " "+DATA_META+" DATETIME );";
+                " "+DATA_META+" DATETIME "+
+                " "+ID_DESPESA+" TEXT );";
         db.execSQL(sql);
 
     }

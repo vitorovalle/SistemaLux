@@ -1,10 +1,12 @@
 package principal.sistemalux.modelo;
 
+import java.io.Serializable;
+
 /**
  * Created by Alfa on 09/05/2018.
  */
 
-public class Tarifa {
+public class Tarifa implements Serializable {
 
     private int idTarifa, precoKwh;
     private String distribuidorTarifa;

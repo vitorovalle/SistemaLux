@@ -1,10 +1,12 @@
 package principal.sistemalux.modelo;
 
+import java.io.Serializable;
+
 /**
  * Created by Alfa on 07/05/2018.
  */
 
-public class Dispositivo {
+public class Dispositivo implements Serializable {
 
     private int idDispositivo, consumoDispositivo,tempoDeUsoDiario;
     private String nomeDispositivo;
@@ -43,4 +45,7 @@ public class Dispositivo {
     public void setNomeDispositivo(String nomeDispositivo) {
         this.nomeDispositivo = nomeDispositivo;
     }
+
+    @Override
+    public String toString() {return nomeDispositivo.toString();}
 }
