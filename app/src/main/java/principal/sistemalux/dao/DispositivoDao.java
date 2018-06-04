@@ -35,8 +35,16 @@ public class DispositivoDao extends SQLiteOpenHelper {
                 " "+ID_DISPOSITIVO+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
                 " "+CONSUMO_DISPOSITIVO+" INTEGER "+
                 " "+TEMPO_DE_USO_DIARIO+" INTEGER "+
-                " "+NOME_DISPOSITIVO+" TEXT );";
+                " "+NOME_DISPOSITIVO+" TEXT );"+
+                "INSERT INTO "+TABELA+" ( "+NOME_DISPOSITIVO+" ) "+"VALUES "+
+                " ( Geladeira ) "+" ( Computador ) "+" ( Lavadora de Roupas )"+
+                " ( Ar Condicionado ) "+
+                "INSERT INTO "+TABELA+" ( "+CONSUMO_DISPOSITIVO+" ) "+"VALUES "+
+                " ( 200 ) "+" ( 50 ) "+" ( 1500 )"+
+                " ( 3500 ) ";
         db.execSQL(sql);
+
+        //carregarDispositivo();
 
     }
 
@@ -109,4 +117,10 @@ public class DispositivoDao extends SQLiteOpenHelper {
 
         return listDispositivo;
     }
+
+    /*public void carregarDispositivo() {
+
+        String sql = ;
+
+    }*/
 }

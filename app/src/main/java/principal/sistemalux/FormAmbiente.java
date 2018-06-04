@@ -1,14 +1,20 @@
 package principal.sistemalux;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioGroup;
-import android.widget.TextView;
+import android.widget.ListView;
 import android.widget.Toast;
+
+
+import java.util.ArrayList;
 
 import principal.sistemalux.dao.AmbienteDao;
 import principal.sistemalux.dao.DispositivoDao;
@@ -22,8 +28,16 @@ public class FormAmbiente extends AppCompatActivity {
 
     long retorno_ambiente;
 
-    Ambiente ambiente, altambiente;
+    Ambiente ambiente, altambiente, idambiente;
     AmbienteDao ambienteDao;
+
+    Dispositivo altdispositivo, dispositivo;
+    DispositivoDao dispositivoDao;
+
+    ListView listDispositivo;
+
+    ArrayList<Dispositivo> arrayListDispositivo;
+    ArrayAdapter<Dispositivo> arrayAdapterDispositivo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,20 +46,28 @@ public class FormAmbiente extends AppCompatActivity {
 
         Intent i = getIntent();
         altambiente = (Ambiente) i.getSerializableExtra("ambiente-enviado");
+        idambiente = (Ambiente) i.getSerializableExtra("id-ambiente");
+
         ambiente = new Ambiente();
         ambienteDao = new AmbienteDao(FormAmbiente.this);
 
         editAmbiente = (EditText) findViewById(R.id.editAmbiente);
         btnAmbiente = (Button) findViewById(R.id.btnAmbiente);
+        listDispositivo = (ListView) findViewById(R.id.listDispositivos);
+
+        registerForContextMenu(listDispositivo);
 
         if (altambiente != null) {
             btnAmbiente.setText("Alterar");
             editAmbiente.setText(altambiente.getNomeAmbiente());
             ambiente.setIdAmbiente(altambiente.getIdAmbiente());
-            //listDispositivo.setVisibility(View.VISIBLE);
-        } else {
+            listDispositivo.setVisibility(View.VISIBLE);
+
+        }
+
+        else {
             btnAmbiente.setText("Salvar");
-            //listDispositivo.setVisibility(View.INVISIBLE);
+            listDispositivo.setVisibility(View.INVISIBLE);
         }
 
         btnAmbiente.setOnClickListener(new View.OnClickListener() {
@@ -80,10 +102,34 @@ public class FormAmbiente extends AppCompatActivity {
 
         });
 
-        }
+        listDispositivo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Dispositivo dispositivoEnviado = (Dispositivo) arrayAdapterDispositivo.getItem(position);
 
+                Intent i = new Intent(FormAmbiente.this, FormConsumo.class);
+                i.putExtra("dispositivo-enviado", dispositivoEnviado);
+                startActivity(i);
+            }
+        });
+
+        }
 
     private void aviso(String s){
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
     }
+
+
+    public void populaDispositivo(){
+
+        dispositivoDao = new DispositivoDao(FormAmbiente.this);
+
+        arrayListDispositivo = dispositivoDao.selectAllDispositivo();
+        dispositivoDao.close();
+
+        arrayAdapterDispositivo = new ArrayAdapter<Dispositivo>(FormAmbiente.this, android.R.layout.simple_list_item_1,arrayListDispositivo);
+        listDispositivo.setAdapter(arrayAdapterDispositivo);
+
+    }
+
 }

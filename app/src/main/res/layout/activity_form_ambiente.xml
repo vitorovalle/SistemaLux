@@ -39,5 +39,10 @@
             android:layout_gravity="center_horizontal"
             android:text="Button" />
 
+        <ListView
+            android:id="@+id/listDispositivos"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
+
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

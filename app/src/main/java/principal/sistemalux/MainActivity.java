@@ -51,17 +51,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Ambiente ambienteEnviado = (Ambiente) arrayAdapterAmbiente.getItem(position);
+                Ambiente idambiente = (Ambiente) arrayAdapterAmbiente.getItem(position);
 
                 Intent i = new Intent(MainActivity.this, FormAmbiente.class);
                 i.putExtra ("ambiente-enviado", ambienteEnviado);
+                i.putExtra("id-ambiente", idambiente);
                 startActivity(i);
-
-                /*Intent j = new Intent(MainActivity.this, FormAmbiente.class);
-                int adapterPosition = position - listAmbientes.getHeaderViewsCount();
-                Cursor cursor = (Cursor) arrayAdapterAmbiente.getItem(position);
-                int idamb = cursor.getInt(cursor.getColumnIndex("idAmbiente"));
-                j.putExtra("idAmbiente", idamb);
-                startActivity(j);*/
             }
         });
 

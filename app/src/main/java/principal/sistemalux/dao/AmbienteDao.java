@@ -24,7 +24,6 @@ public class AmbienteDao extends SQLiteOpenHelper {
 
     private static final String ID_AMBIENTE = "idAmbiente";
     private static final String NOME_AMBIENTE = "ambiente";
-    private static final String ID_DISPOSITIVO = "idDispositivo";
 
     public AmbienteDao(Context context) {
         super(context, NOME_BANCO, null, VERSAO);
@@ -34,8 +33,7 @@ public class AmbienteDao extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE "+TABELA+" ( " +
                 " "+ID_AMBIENTE+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
-                " "+NOME_AMBIENTE+" TEXT, "+
-                " "+ID_DISPOSITIVO+" TEXT );";
+                " "+NOME_AMBIENTE+" TEXT );";
         db.execSQL(sql);
 
     }

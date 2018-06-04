@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">SistemaLux</string>
+    <string name="hrs2">Até 2 horas</string>
+    <string name="hrs4">Entre 2 e 4 horas</string>
+    <string name="hrs6">Entre 4 e 6 horas</string>
+    <string name="hrs8">Entre 6 e 8 horas</string>
+    <string name="hrs10">Entre 8 e 10 horas</string>
+    <string name="hrs12">Entre 10 e 12 horas</string>
+    <string name="hrs14">Entre 12 e 14 horas</string>
+    <string name="hrs16">Entre 14 e 16 horas</string>
+    <string name="hrs18">Entre 16 e 18 horas</string>
+    <string name="hrs20">Entre 18 e 20 horas</string>
+    <string name="hrs22">Entre 20 e 22 horas</string>
+    <string name="hrs24">Entre 22 e 24 horas</string>
 </resources>
