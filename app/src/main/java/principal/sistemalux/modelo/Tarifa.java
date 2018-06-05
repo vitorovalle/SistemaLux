@@ -37,4 +37,5 @@ public class Tarifa implements Serializable {
     public void setDistribuidorTarifa(String distribuidorTarifa) {
         this.distribuidorTarifa = distribuidorTarifa;
     }
+
 }

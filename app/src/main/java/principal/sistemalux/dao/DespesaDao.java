@@ -104,7 +104,6 @@ public class DespesaDao extends SQLiteOpenHelper {
             s.setIdDespesa(cursor.getInt(0));
             s.setDespesaDiaria(cursor.getInt(1));
             s.setDespesaTotal(cursor.getInt(2));
-            /** s.setDataDespesa(cursor.getTime(3)); */
 
             listDespesa.add(s);
 

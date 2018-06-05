@@ -37,7 +37,6 @@ public class FormConsumo extends AppCompatActivity {
                 Intent i = new Intent(FormConsumo.this, FormDespesa.class);
                 i.putExtra("consumo-enviado", consumoEnviado);
                 startActivity(i);
-
             }
         });
     }
